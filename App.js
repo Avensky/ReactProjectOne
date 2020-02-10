@@ -6,12 +6,20 @@ import UserOutput from './UserOutput/UserOutput';
 
 class App extends Component {
   state = {
-    username: "RolyPoly"
-  }
+    username: "RolyPoly",
+    otherState: 'some other value',
+    showUsername: false
+    }
 
   inputnameChangeHandler = (event) => {
     this.setState({username: event.target.value})
   }
+
+  toggleUsernameHandler = () => {
+    const doesShow = this.state.showUsername;
+    this.setState({showUsername: !doesShow})
+  }
+
   render() {
 
     return (
@@ -28,10 +36,19 @@ class App extends Component {
           <li>Add two-way-binding to your input (in UserInput) to also display the starting username</li>
           <li>Add styling of your choice to your components/ elements in the components - both with inline styles and stylesheets</li>
         </ol>
-        <UserInput 
-          change={this.inputnameChangeHandler}
-          currentName={this.state.username}
-        ></UserInput>
+        <button
+          onClick={this.toggleUsernameHandler}>
+            Switch Name
+          </button>
+        { 
+          this.state.showUsername ?
+            <div>
+              <UserInput 
+              change={this.inputnameChangeHandler}
+              currentName={this.state.username}
+              ></UserInput>
+            </div> : null
+        }
         <UserOutput userName={this.state.username}></UserOutput>
         <UserOutput userName="Tama"></UserOutput>
       </div>

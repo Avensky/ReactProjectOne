@@ -6,7 +6,11 @@ import UserOutput from './UserOutput/UserOutput';
 
 class App extends Component {
   state = {
-    username: "RolyPoly",
+    usernames: [
+      { username: "RolyPoly" },
+      { username: "GoldFish" },
+      { username: "Tama" }
+    ],
     otherState: 'some other value',
     showUsername: false
     }
@@ -53,8 +57,12 @@ class App extends Component {
             Switch Name
           </button>
           {usernames}
-        <UserOutput userName={this.state.username}></UserOutput>
-        <UserOutput userName="Tama"></UserOutput>
+        {this.state.usernames.map(usernames => {
+          return <UserOutput
+            username={usernames.username}
+            ></UserOutput>
+        })}
+        <UserOutput username="Bodhi"></UserOutput>
       </div>
     );
   }

@@ -21,6 +21,18 @@ class App extends Component {
   }
 
   render() {
+    let usernames = null;
+    
+    if ( this.state.showUsername ) {
+      usernames = (
+        <div>
+          <UserInput 
+          change={this.inputnameChangeHandler}
+          currentName={this.state.username}
+          ></UserInput>
+        </div>
+      );
+    }
 
     return (
       <div className="App">
@@ -40,15 +52,7 @@ class App extends Component {
           onClick={this.toggleUsernameHandler}>
             Switch Name
           </button>
-        { 
-          this.state.showUsername ?
-            <div>
-              <UserInput 
-              change={this.inputnameChangeHandler}
-              currentName={this.state.username}
-              ></UserInput>
-            </div> : null
-        }
+          {usernames}
         <UserOutput userName={this.state.username}></UserOutput>
         <UserOutput userName="Tama"></UserOutput>
       </div>

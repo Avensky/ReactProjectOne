@@ -6,7 +6,7 @@ import UserOutput from './UserOutput/UserOutput';
 
 class App extends Component {
   state = {
-    usernames: [
+    users: [
       { username: "RolyPoly" },
       { username: "GoldFish" },
       { username: "Tama" }
@@ -24,16 +24,24 @@ class App extends Component {
     this.setState({showUsername: !doesShow})
   }
 
+  deleteUserHandler = (userIndex) => {
+    const users = this.state.users;
+    users.splice(userIndex, 1);
+    this.setState({users:users});
+  }
+
   render() {
-    let usernames = null;
+    let users = null;
     
     if ( this.state.showUsername ) {
-      usernames = (
+      users = (
         <div>
-          <UserInput 
-          change={this.inputnameChangeHandler}
-          currentName={this.state.username}
-          ></UserInput>
+          {this.state.users.map((users, index) => {
+          return <UserInput 
+            change={this.inputnameChangeHandler}
+            currentName={users.username}
+          />
+          })}
         </div>
       );
     }
@@ -56,11 +64,12 @@ class App extends Component {
           onClick={this.toggleUsernameHandler}>
             Switch Name
           </button>
-          {usernames}
-        {this.state.usernames.map(usernames => {
+          {users}
+        {this.state.users.map((users, index) => {
           return <UserOutput
-            username={usernames.username}
-            ></UserOutput>
+            click={() => this.deleteUserHandler(index)}
+            username={users.username}
+          />
         })}
         <UserOutput username="Bodhi"></UserOutput>
       </div>

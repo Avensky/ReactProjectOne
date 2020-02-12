@@ -7,9 +7,9 @@ import UserOutput from './UserOutput/UserOutput';
 class App extends Component {
   state = {
     users: [
-      { username: "RolyPoly" },
-      { username: "GoldFish" },
-      { username: "Tama" }
+      {id: 'as', username: "RolyPoly" },
+      {id: 'ad', username: "GoldFish" },
+      {id: 'af', username: "Tama" }
     ],
     otherState: 'some other value',
     showUsername: false
@@ -70,6 +70,7 @@ class App extends Component {
           return <UserOutput
             click={() => this.deleteUserHandler(index)}
             username={users.username}
+            key={users.id}
           />
         })}
         <UserOutput username="Bodhi"></UserOutput>

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-
-import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 
 class App extends Component {
@@ -12,16 +10,30 @@ class App extends Component {
       {id: 'af', username: "Tama" }
     ],
     otherState: 'some other value',
-    showUsername: false
+    showUsers: false
     }
 
-  inputnameChangeHandler = (event) => {
-    this.setState({username: event.target.value})
+  inputnameChangedHandler = (event, id) => {
+    const userIndex = this.state.users.findIndex(u => {
+      return u.id === id;
+    });
+
+    const user = {
+      ...this.state.users[userIndex]
+    };
+    //const user = object.assign({}, this.state.users[userIndex])
+
+    user.username = event.target.value;
+
+    const users = [...this.state.users];
+    users[userIndex] = user;
+    
+    this.setState({users: users});
   }
 
-  toggleUsernameHandler = () => {
-    const doesShow = this.state.showUsername;
-    this.setState({showUsername: !doesShow})
+  toggleUsersHandler = () => {
+    const doesShow = this.state.show;
+    this.setState({showUsers: !doesShow})
   }
 
   deleteUserHandler = (userIndex) => {
@@ -34,14 +46,16 @@ class App extends Component {
   render() {
     let users = null;
     
-    if ( this.state.showUsername ) {
+    if ( this.state.showUsers ) {
       users = (
         <div>
-          {this.state.users.map((users, index) => {
-          return <UserInput 
-            change={this.inputnameChangeHandler}
-            currentName={users.username}
-          />
+          {this.state.users.map((user, index) => {
+          return <UserOutput
+            click={() => this.deleteUserHandler(index)}
+            username={user.username}
+            key={user.id}
+            changed={(event) => this.inputnameChangedHandler(event, user.id)}
+            />
           })}
         </div>
       );
@@ -61,19 +75,11 @@ class App extends Component {
           <li>Add two-way-binding to your input (in UserInput) to also display the starting username</li>
           <li>Add styling of your choice to your components/ elements in the components - both with inline styles and stylesheets</li>
         </ol>
-        <button
-          onClick={this.toggleUsernameHandler}>
-            Switch Name
-          </button>
-          {users}
-        {this.state.users.map((users, index) => {
-          return <UserOutput
-            click={() => this.deleteUserHandler(index)}
-            username={users.username}
-            key={users.id}
-          />
-        })}
-        <UserOutput username="Bodhi"></UserOutput>
+        <button 
+          onClick={this.toggleUsersHandler}>
+          Show Users
+        </button>
+        {users}
       </div>
     );
   }

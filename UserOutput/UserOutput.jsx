@@ -1,12 +1,14 @@
 import React from 'react';
 import './UserOutput.css';
 
-const userOutput = (props) => {
+const user = ( props ) => {
     return (
         <div className="UserOutput">
             <p onClick={props.click}>Username: {props.username}</p>
+            <p>{props.children}</p>
+            <input type="text" onChange={props.changed} value={props.username} />
         </div>        
     );
 };
 
-export default userOutput;
+export default user;

@@ -5,11 +5,10 @@ const userInput = (props) => {
         border: '2px solid blue'
     };
     
-    return <input 
-        type="text"
-        style={inputStyle}
-        onChange={props.change} 
-        value={props.currentName}/>;
+    return [
+        <div className="UserInput">
+        </div>
+    ]
 };
 
 export default userInput;

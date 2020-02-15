@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import UserOutput from './UserOutput/UserOutput';
+import Validation from './Validation/Validation';
 
 class App extends Component {
   state = {
@@ -54,8 +55,7 @@ class App extends Component {
             click={() => this.deleteUserHandler(index)}
             username={user.username}
             key={user.id}
-            changed={(event) => this.inputnameChangedHandler(event, user.id)}
-            />
+            changed={(event) => this.inputnameChangedHandler(event, user.id)}/>
           })}
         </div>
       );

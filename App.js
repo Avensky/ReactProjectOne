@@ -12,7 +12,8 @@ class App extends Component {
       {id: 'af', username: "Tama" }
     ],
     otherState: 'some other value',
-    showUsers: false
+    showUsers: false,
+    userInput: ''
     }
 
   inputnameChangedHandler = (event, id) => {
@@ -43,6 +44,17 @@ class App extends Component {
     const users = [...this.state.users];
     users.splice(userIndex, 1);
     this.setState({users:users});
+  }
+
+  inputChangedHandler = (event) => {
+    this.setState({ userInput: event.target.value });
+  }
+
+  deleteCharHandler = (index) => {
+    const text = this.state.userInput.split('');
+    text.splice(index, 1);
+    const updatedText = text.join('');
+    this.setState({userInput: updatedText});
   }
 
   render() {
@@ -79,7 +91,7 @@ class App extends Component {
         <hr />
         <input
           type='text'
-          onChange={this.inputnameChangedHandler}
+          onChange={this.inputChangedHandler}
           value={this.state.userInput} />
         <p>{this.state.userInput}</p>
         <Validation inputLength={this.state.userInput.length} />

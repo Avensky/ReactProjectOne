@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   toggleUsersHandler = () => {
-    const doesShow = this.state.show;
+    const doesShow = this.state.showUsers;
     this.setState({showUsers: !doesShow})
   }
 
@@ -58,9 +58,19 @@ class App extends Component {
   }
 
   render() {
+    const style = {
+      backgroundColor: 'green',
+      color:'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     let users = null;
     
     if ( this.state.showUsers ) {
+
       users = (
         <div>
           {this.state.users.map((user, index) => {
@@ -72,6 +82,8 @@ class App extends Component {
           })}
         </div>
       );
+
+      style.backgroundColor = 'red';
     }
 
     const charList = this.state.userInput.split('').map((ch, index) => {
@@ -84,6 +96,7 @@ class App extends Component {
     return (
       <div className="App">
         <button 
+          style={style}
           onClick={this.toggleUsersHandler}>
           Show Users
         </button>

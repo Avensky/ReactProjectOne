@@ -93,8 +93,19 @@ class App extends Component {
         clicked={() => this.deleteCharHandler(index)} />;
     });
 
+    //let classes = ['red', 'bold'].join(' ');
+    const classes = [];
+    if (this.state.users.length <= 2) {
+      classes.push('red'); //classes = ['red']
+    }
+    if (this.state.users.length <= 1) {
+      classes.push('bold'); //classes = ['red', 'bold']
+    }
+
     return (
       <div className="App">
+        <h1>Hi, Welcome to my React App.</h1>
+        <p className={classes.join(' ')}>This is really working!</p>
         <button 
           style={style}
           onClick={this.toggleUsersHandler}>

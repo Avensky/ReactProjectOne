@@ -1,6 +1,5 @@
-import Radium, { StyleRoot } from 'radium';
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import UserOutput from './UserOutput/UserOutput';
 import UserInput from './UserInput/UserInput';
 import Validation from './Validation/Validation';
@@ -60,21 +59,8 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color:'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
-
     let users = null;
-    
+    let btnClass = '';
     if ( this.state.showUsers ) {
 
       users = (
@@ -88,13 +74,7 @@ class App extends Component {
           })}
         </div>
       );
-
-      style.backgroundColor = 'red';
-
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      };
+      btnClass = classes.Red;
     }
 
     const charList = this.state.userInput.split('').map((ch, index) => {
@@ -105,26 +85,25 @@ class App extends Component {
     });
 
     //let classes = ['red', 'bold'].join(' ');
-    const classes = [];
+    const assignedClasses = [];
     if (this.state.users.length <= 2) {
-      classes.push('red'); //classes = ['red']
+      assignedClasses.push(classes.red); //classes = ['red']
     }
     if (this.state.users.length <= 1) {
-      classes.push('bold'); //classes = ['red', 'bold']
+      assignedClasses.push(classes.bold); //classes = ['red', 'bold']
     }
 
     return (
-      <StyleRoot>
-      <div className="App">
-        <h1>Hi, Welcome to my React App.</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
+      <div className={classes.App}>
+        <p className={assignedClasses.join(' ')}>This is really working!</p>
         <button 
-          style={style}
+          className={btnClass.join}
           onClick={this.toggleUsersHandler}>
           Show Users
         </button>
         {users}
-        <hr />
+        <br></br>
+        <br></br>
         <input
           type='text'
           onChange={this.inputChangedHandler}
@@ -133,9 +112,8 @@ class App extends Component {
         <Validation inputLength={this.state.userInput.length} />
         {charList}
       </div>
-      </StyleRoot>
     );
   }
 }
 
-export default Radium(App);
+export default App;

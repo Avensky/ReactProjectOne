@@ -3,6 +3,12 @@
     padding: 16px;
     margin: 16px;
     border: 2px solid black;
-    background-color: #ccc;
-    text-align: center;
+    background-color: rgb(187, 184, 184);
+
+}
+
+@media (min-width: 500px) {
+    .UserOutput {
+        width: 450px;
+    }
 }

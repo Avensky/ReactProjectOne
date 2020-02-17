@@ -1,9 +1,10 @@
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import React, { Component } from 'react';
 import './App.css';
 import UserOutput from './UserOutput/UserOutput';
 import UserInput from './UserInput/UserInput';
 import Validation from './Validation/Validation';
+
 
 class App extends Component {
   state = {
@@ -113,6 +114,7 @@ class App extends Component {
     }
 
     return (
+      <StyleRoot>
       <div className="App">
         <h1>Hi, Welcome to my React App.</h1>
         <p className={classes.join(' ')}>This is really working!</p>
@@ -131,6 +133,7 @@ class App extends Component {
         <Validation inputLength={this.state.userInput.length} />
         {charList}
       </div>
+      </StyleRoot>
     );
   }
 }

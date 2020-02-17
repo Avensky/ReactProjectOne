@@ -1,9 +1,15 @@
 import React from 'react';
 import './UserOutput.css';
+import Radium from 'radium';
 
 const user = ( props ) => {
+    const style = {
+        '@media (min-width:500px)': {
+            width: '450px'
+        }
+    }
     return (
-        <div className="UserOutput">
+        <div className="UserOutput" style={style}>
             <p onClick={props.click}>Username: {props.username}</p>
             <p>{props.children}</p>
             <input type="text" onChange={props.changed} value={props.username} />
@@ -11,4 +17,4 @@ const user = ( props ) => {
     );
 };
 
-export default user;
+export default Radium(user);

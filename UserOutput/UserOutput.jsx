@@ -3,6 +3,12 @@ import classes from './UserOutput.css';
 
 const user = ( props ) => {
 
+    const rnd = Math.random();
+
+    if ( rnd > 0.7 ) {
+        throw new Error( 'Something went wrong' );
+    }
+
     return (
         <div className={classes.UserOutput}>
             <p onClick={props.click}>Username: {props.username}</p>

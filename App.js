@@ -3,6 +3,7 @@ import classes from './App.css';
 import UserOutput from './UserOutput/UserOutput';
 import UserInput from './UserInput/UserInput';
 import Validation from './Validation/Validation';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 
 class App extends Component {
@@ -66,11 +67,12 @@ class App extends Component {
       users = (
         <div>
           {this.state.users.map((user, index) => {
-          return <UserOutput
-            click={() => this.deleteUserHandler(index)}
+          return <ErrorBoundary key={user.id}>
+            <UserOutput
+            click={() => this.deleteUserHandler( index )}
             username={user.username}
-            key={user.id}
-            changed={(event) => this.inputnameChangedHandler(event, user.id)}/>
+            changed={(event) => this.inputnameChangedHandler(event, user.id)} />
+          </ ErrorBoundary>
           })}
         </div>
       );

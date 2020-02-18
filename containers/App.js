@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import UserOutput from './UserOutput/UserOutput';
-import UserInput from './UserInput/UserInput';
-import Validation from './Validation/Validation';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
-
+import UserOutput from '../components/UserOutput/UserOutput/UserOutput';
+import UserInput from '../components/UserInput/UserInput';
+import Validation from '../components/Validation/Validation';
+// import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import Users from '../components/UserOutput/User';
 
 class App extends Component {
   state = {
@@ -66,14 +66,11 @@ class App extends Component {
 
       users = (
         <div>
-          {this.state.users.map((user, index) => {
-          return <ErrorBoundary key={user.id}>
-            <UserOutput
-            click={() => this.deleteUserHandler( index )}
-            username={user.username}
-            changed={(event) => this.inputnameChangedHandler(event, user.id)} />
-          </ ErrorBoundary>
-          })}
+          <Users 
+            users={this.state.users}  
+            clicked={this.deleteUserHandler}
+            changed={this.inputnameChangedHandler}
+          />
         </div>
       );
       btnClass = classes.Red;

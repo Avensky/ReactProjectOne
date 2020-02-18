@@ -97,7 +97,7 @@ class App extends Component {
       <div className={classes.App}>
         <p className={assignedClasses.join(' ')}>This is really working!</p>
         <button 
-          className={btnClass.join}
+          className={btnClass}
           onClick={this.toggleUsersHandler}>
           Show Users
         </button>

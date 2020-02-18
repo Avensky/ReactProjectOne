@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import UserOutput from '../components/UserOutput/UserOutput/UserOutput';
+//import UserOutput from '../components/UserOutput/UserOutput/UserOutput';
 import UserInput from '../components/UserInput/UserInput';
 import Validation from '../components/Validation/Validation';
 // import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Users from '../components/UserOutput/User';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -61,19 +62,12 @@ class App extends Component {
 
   render() {
     let users = null;
-    let btnClass = '';
     if ( this.state.showUsers ) {
-
-      users = (
-        <div>
-          <Users 
+      users = <Users 
             users={this.state.users}  
             clicked={this.deleteUserHandler}
             changed={this.inputnameChangedHandler}
           />
-        </div>
-      );
-      btnClass = classes.Red;
     }
 
     const charList = this.state.userInput.split('').map((ch, index) => {
@@ -83,23 +77,12 @@ class App extends Component {
         clicked={() => this.deleteCharHandler(index)} />;
     });
 
-    //let classes = ['red', 'bold'].join(' ');
-    const assignedClasses = [];
-    if (this.state.users.length <= 2) {
-      assignedClasses.push(classes.red); //classes = ['red']
-    }
-    if (this.state.users.length <= 1) {
-      assignedClasses.push(classes.bold); //classes = ['red', 'bold']
-    }
-
     return (
       <div className={classes.App}>
-        <p className={assignedClasses.join(' ')}>This is really working!</p>
-        <button 
-          className={btnClass}
-          onClick={this.toggleUsersHandler}>
-          Show Users
-        </button>
+        <Cockpit 
+          showUsers={this.state.showUsers}
+          users={this.state.users} 
+          clicked={this.toggleUsersHandler}/>
         {users}
         <br></br>
         <br></br>

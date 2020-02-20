@@ -23,14 +23,16 @@ class App extends Component {
     showUsers: false,
     userInput: ''
     }
-static getDerivedStateFromProps(props, state) {
-  console.log('[App.js] getDerivedStateFromProps', props);
-  return state;
-}
 
-componentDidMount(){
-  console.log('[App.js] componentDidMount');
-}
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+  }
+
+
+  componentDidMount(){
+    console.log('[App.js] componentDidMount');
+  }
 
   inputnameChangedHandler = (event, id) => {
     const userIndex = this.state.users.findIndex(u => {

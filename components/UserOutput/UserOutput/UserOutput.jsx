@@ -1,15 +1,18 @@
-import React from 'react';
+import React, {Component} from 'react';
 import classes from './UserOutput.css';
 
-const user = ( props ) => {
-    console.log('[UserOuput.jsx] rendering...');
-    return (
-        <div className={classes.UserOutput}>
-            <p onClick={props.click}>Username: {props.username}</p>
-            <p>{props.children}</p>
-            <input type="text" onChange={props.changed} value={props.username} />
-        </div>        
-    );
-};
+class User extends Component {
+    render (){
+        console.log('[UserOuput.jsx] rendering...');
+        return (
+            <div className={classes.UserOutput}>
+                <p onClick={this.props.click}>Username: {this.props.username}</p>
+                <p>{this.props.children}</p>
+                <input type="text" onChange={this.props.changed} value={this.props.username} />
+            </div>        
+        );
 
-export default user;
+    }
+}
+
+export default User;

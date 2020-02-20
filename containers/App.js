@@ -8,6 +8,11 @@ import Users from '../components/UserOutput/User';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    console.log('[App.js] constructor');
+  }
+   
   state = {
     users: [
       {id: 'as', username: "RolyPoly" },
@@ -18,6 +23,14 @@ class App extends Component {
     showUsers: false,
     userInput: ''
     }
+static getDerivedStateFromProps(props, state) {
+  console.log('[App.js] getDerivedStateFromProps', props);
+  return state;
+}
+
+componentDidMount(){
+  console.log('[App.js] componentDidMount');
+}
 
   inputnameChangedHandler = (event, id) => {
     const userIndex = this.state.users.findIndex(u => {
@@ -61,6 +74,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] render');
     let users = null;
     if ( this.state.showUsers ) {
       users = <Users 

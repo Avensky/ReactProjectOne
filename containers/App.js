@@ -21,7 +21,8 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showUsers: false,
-    userInput: ''
+    userInput: '',
+    showCockpit: true,
     }
 
   static getDerivedStateFromProps(props, state) {
@@ -34,6 +35,20 @@ class App extends Component {
     console.log('[App.js] componentDidMount');
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
+  }
+/*
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('[App.js] getSnapShotBeforeUpdate');
+    return {message: 'Snapshot!'};
+  }
+*/
   inputnameChangedHandler = (event, id) => {
     const userIndex = this.state.users.findIndex(u => {
       return u.id === id;
@@ -95,11 +110,15 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <Cockpit 
+        <button
+          onClick={() => {
+            this.setState({ showCockpit: false });
+          }}>Remove Cockpit</button>
+        {this.state.showCockpit ? <Cockpit 
           title={this.props.appTitle}
           showUsers={this.state.showUsers}
           users={this.state.users} 
-          clicked={this.toggleUsersHandler}/>
+          clicked={this.toggleUsersHandler}/> : null}
         {users}
         <br></br>
         <br></br>

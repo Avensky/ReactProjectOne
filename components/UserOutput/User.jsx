@@ -3,6 +3,21 @@ import UserOutput from './UserOutput/UserOutput';
 import { render } from 'react-dom';
 
 class Users extends Component {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[Users.js] shouldComponentUpdate');
+    if (nextProps.users !== this.props.users){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('[Users.js] getSnapShotBeforeUpdate');
+    return {message: 'Snapshot!'};
+  };
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log('[Users.js] componentDidUpdate');
     console.log(snapshot);  

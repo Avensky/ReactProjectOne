@@ -1,17 +1,21 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import UserOutput from './UserOutput/UserOutput';
 import { render } from 'react-dom';
 
-class Users extends Component {
+class Users extends PureComponent {
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('[Users.js] shouldComponentUpdate');
-    if (nextProps.users !== this.props.users){
-      return true;
-    } else {
-      return false;
-    }
-  }
+ // shouldComponentUpdate(nextProps, nextState) {
+ //   console.log('[Users.js] shouldComponentUpdate');
+ //   if (
+ //     nextProps.users !== this.props.users || 
+ //     nextProps.changed !== this.props.changed || 
+ //     nextProps.clicked !== this.props.clicked
+ //   ){
+ //     return true;
+ //   } else {
+ //     return false;
+ //   }
+ // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('[Users.js] getSnapShotBeforeUpdate');

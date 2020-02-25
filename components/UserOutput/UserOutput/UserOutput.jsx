@@ -5,7 +5,7 @@ import Aux from '../../../hoc/Auxilary';
 class User extends Component {
     render (){
         console.log('[UserOuput.jsx] rendering...');
-        return 
+        return (
         <Aux>
             <p key="i1" onClick={this.props.click}>
                 Username: {this.props.username}
@@ -17,8 +17,8 @@ class User extends Component {
                 onChange={this.props.changed} 
                 value={this.props.username} 
             />        
-        </Aux>;
-
+        </Aux>)
+        ;
     }
 }
 

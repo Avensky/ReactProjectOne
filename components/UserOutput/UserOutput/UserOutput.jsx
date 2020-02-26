@@ -22,4 +22,4 @@ class User extends Component {
     }
 }
 
-export default withClass(User, classes.User);
+export default withClass(User, classes.UserOutput);

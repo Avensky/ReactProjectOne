@@ -25,6 +25,7 @@ class App extends Component {
     showUsers: false,
     userInput: '',
     showCockpit: true,
+    changedCounter: 0
     }
 
   static getDerivedStateFromProps(props, state) {
@@ -66,8 +67,13 @@ class App extends Component {
     const users = [...this.state.users];
     users[userIndex] = user;
     
-    this.setState({users: users});
-  }
+    this.setState((prevState, props) => {
+      return{
+        users: users, 
+        changedCounter: prevState.changedCounter + 1
+      };  
+    });
+  };
 
   toggleUsersHandler = () => {
     const doesShow = this.state.showUsers;

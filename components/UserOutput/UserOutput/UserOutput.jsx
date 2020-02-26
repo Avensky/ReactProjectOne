@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import classes from './UserOutput.css';
 import Auxilary from '../../../hoc/Auxilary';
-import Aux from '../../../hoc/Auxilary';
+import withClass from '../../../hoc/withClass';
 class User extends Component {
     render (){
         console.log('[UserOuput.jsx] rendering...');
         return (
-        <Aux>
+        <Auxilary>
             <p key="i1" onClick={this.props.click}>
                 Username: {this.props.username}
             </p>,
@@ -17,9 +17,9 @@ class User extends Component {
                 onChange={this.props.changed} 
                 value={this.props.username} 
             />        
-        </Aux>)
+        </Auxilary>)
         ;
     }
 }
 
-export default User;
+export default withClass(User, classes.User);

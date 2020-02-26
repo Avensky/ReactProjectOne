@@ -6,6 +6,8 @@ import Validation from '../components/Validation/Validation';
 // import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Users from '../components/UserOutput/User';
 import Cockpit from '../components/Cockpit/Cockpit';
+import withClass from '../hoc/withClass';
+import Auxilary from '../hoc/Auxilary';
 
 class App extends Component {
   constructor(props){
@@ -109,7 +111,7 @@ class App extends Component {
     });
 
     return (
-      <div className={classes.App}>
+      <Auxilary>
         <button
           onClick={() => {
             this.setState({ showCockpit: false });
@@ -129,9 +131,9 @@ class App extends Component {
         <p>{this.state.userInput}</p>
         <Validation inputLength={this.state.userInput.length} />
         {charList}
-      </div>
+      </Auxilary>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);

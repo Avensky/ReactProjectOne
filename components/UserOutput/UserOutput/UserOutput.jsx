@@ -5,6 +5,15 @@ import Auxilary from '../../../hoc/Auxilary';
 import withClass from '../../../hoc/withClass';
 
 class User extends Component {
+
+    constructor(props) {
+        super(props);
+        this.inputElementRef = React.createRef();
+    }
+    componentDidMount() {
+        this.inputElementRef.current.focus();
+    }
+
     render (){
         console.log('[UserOuput.jsx] rendering...');
         return (
@@ -14,6 +23,8 @@ class User extends Component {
             <p key="i2">{this.props.children}</p>
             <input 
                 key="i3"
+                //ref={(inputEl) => {this.inputElement = inputEl}}
+                ref = {this.inputElementRef}
                 type="text" 
                 onChange={this.props.changed} 
                 value={this.props.username} 

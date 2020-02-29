@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classes from './UserOutput.css';
 import Auxilary from '../../../hoc/Auxilary';
 import withClass from '../../../hoc/withClass';
+import AuthContext from '../../../context/auth-context';
 
 class User extends Component {
 
@@ -18,6 +19,10 @@ class User extends Component {
         console.log('[UserOuput.jsx] rendering...');
         return (
         <Auxilary>
+            <AuthContext.Consumer>
+                {(context) => 
+                context.authenticated ? <p>Authenticated!</p> : <p>Please log in</p>}
+            </AuthContext.Consumer>
             <p key="i1" onClick={this.props.click}>
                 Username: {this.props.username}</p>
             <p key="i2">{this.props.children}</p>

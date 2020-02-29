@@ -1,9 +1,7 @@
 import React, { PureComponent } from 'react';
 import UserOutput from './UserOutput/UserOutput';
-import { render } from 'react-dom';
 
 class Users extends PureComponent {
-
  // shouldComponentUpdate(nextProps, nextState) {
  //   console.log('[Users.js] shouldComponentUpdate');
  //   if (
@@ -33,15 +31,16 @@ class Users extends PureComponent {
 
   render() {
     console.log('[Users.jsx] rendering...');
-    return this.props.users.map((user, index) => {
+    return (this.props.users.map((user, index) => {
       return (
         <UserOutput
           click={() => this.props.clicked( index )}
           key={user.id}
           username={user.username}
-          changed={(event) => this.props.changed(event, user.id)} />
+          changed={(event) => this.props.changed(event, user.id)}
+        />
       );
-  });
+  }));
   }
 }
 
